@@ -33,7 +33,26 @@ public class BarangService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error");
         }
     }
+    public ResponseEntity getById(String idBarang){
+        try{
+            UUID idBarangUuid = UUID.fromString(idBarang);
+            Optional<TdBarang> optionalTdBarang = barangRepository.findById(idBarangUuid);
 
+            if (optionalTdBarang.isPresent()) {
+                TdBarang tdbarang = optionalTdBarang.get();
+
+                if (tdbarang.getNamaBarang() != null) {
+                    return ResponseEntity.ok(tdbarang);
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No data found");
+                }
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No data found");
+            }
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error");
+        }
+    }
     public ResponseEntity postBarang(TdBarang tdBarang){
 
         try{

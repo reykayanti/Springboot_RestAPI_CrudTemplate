@@ -16,10 +16,16 @@ public class BarangController {
     @Autowired
     private BarangService barangService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/getAllUbah")
     public ResponseEntity<?> getAllBarang() {
         ResponseEntity responseEntity = null;
         responseEntity = barangService.getAllBarang();
+        return responseEntity;
+    }
+    @GetMapping("/getById")
+    public ResponseEntity<?> getById(String idBarang) {
+        ResponseEntity responseEntity = null;
+        responseEntity = barangService.getById(idBarang);
         return responseEntity;
     }
     @PostMapping("/postBarang")
