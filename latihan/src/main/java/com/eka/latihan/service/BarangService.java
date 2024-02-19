@@ -1,9 +1,7 @@
 package com.eka.latihan.service;
 
 import com.eka.latihan.entity.TdBarang;
-import com.eka.latihan.entity.TdJenisBarang;
 import com.eka.latihan.repository.BarangRepository;
-import com.eka.latihan.repository.JenisBarangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +18,6 @@ public class BarangService {
     @Autowired
     private BarangRepository barangRepository;
 
-    @Autowired
-    private JenisBarangRepository jenisBarangRepository;
-
     public ResponseEntity getAllBarang(){
 
         try{
@@ -38,26 +33,6 @@ public class BarangService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error");
         }
     }
-
-    public ResponseEntity getByJenis(String namaJenisBarang){
-
-        try{
-            TdJenisBarang tdJenisBarang = jenisBarangRepository.getByName(namaJenisBarang);
-            UUID idJenisBarang = tdJenisBarang.getIdJenisBarang();
-
-            List<TdBarang> tdbarang = barangRepository.getByIdJenisBarang(idJenisBarang);
-
-            if (!tdbarang.isEmpty()) {
-                return ResponseEntity.ok(tdbarang);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No data found");
-            }
-        }catch (Exception e){
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error");
-        }
-    }
-
 
     public ResponseEntity postBarang(TdBarang tdBarang){
 
