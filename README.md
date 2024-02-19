@@ -17,6 +17,9 @@ Pendukung Lainnya: <br>
 ✨Swagger-3 <br>
 ✨JPA Lombok <br>
 ✨dll <br>
+<br>
+<br>
+Tutorial : https://round-authority-271.notion.site/JAVA-SPRINGBOOT-3fa0038140204ee4a3c37d175e1690e4?pvs=4
 
 
  
